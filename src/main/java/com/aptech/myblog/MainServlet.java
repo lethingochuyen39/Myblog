@@ -1,5 +1,7 @@
 package com.aptech.myblog;
 
+import com.aptech.models.ApplicationSettings;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +20,9 @@ public class MainServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        product = getInitParameter("productName");
+        product = getServletContext().getInitParameter("productName");
+        var applicationSettings = new ApplicationSettings();
+        getServletContext().setAttribute("app", applicationSettings);
         if (product == null || product.isEmpty()) {
             throw new ServletException("unable to initialize the application");
         }
@@ -26,8 +30,17 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        setupData(req,ApplicationSettings.topic, ApplicationSettings.all);
+        var requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
+        requestDispatcher.forward(req, resp);
 
-        resp.getWriter().write("");
     }
+
+    private void setupData(HttpServletRequest request, String type, String detail) {
+        ApplicationSettings applicationSettings = (ApplicationSettings) getServletContext().getAttribute("app");
+        var data = applicationSettings.setupData(type, detail);
+        request.setAttribute("items", data);
+    }
+
 
 }
