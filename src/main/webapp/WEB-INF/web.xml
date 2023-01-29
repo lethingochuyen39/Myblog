@@ -3,4 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+
+    <context-param>
+        <param-name>connStr</param-name>
+        <param-value>server=localhost;catalog=blog;uid=sa;password=*******</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Main</servlet-name>
+        <servlet-class>com.aptech.myblog.MainServlet</servlet-class>
+        <init-param>
+            <param-name>productName</param-name>
+            <param-value>Super Blog</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Main</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Main</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
 </web-app>
