@@ -4,12 +4,12 @@
 <div>
     <h3>Topics</h3>
     <ul>
-        <li><a href="topic/all.do">All</a></li>
+        <li><a href="${pageContext.request.contextPath}/topic/all.do">All</a></li>
         <%
             ApplicationSettings app = (ApplicationSettings) request.getServletContext().getAttribute("app");
             List<Topic> topics = app.getTopicList().getTopics();
             for (Topic topic : topics) { %>
-        <li><a href="/topic<%=topic.getUrl()%>"><%=topic.getTitle()%>
+        <li><a href="${pageContext.request.contextPath}/topic/<%=topic.getUrl()%>"><%=topic.getTitle()%>
         </a></li>
         <% } %>
 

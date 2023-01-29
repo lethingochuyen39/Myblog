@@ -4,12 +4,14 @@
 <%
     List<NewsItem> items = (List<NewsItem>) request.getAttribute("items");
 %>
-<% for (NewsItem item : items) {%>
+<% for (NewsItem item : items) {
+    pageContext.setAttribute("item", item);
+%>
 <div>
-    <h2><a href="/news/<%=item.getTitle()%>"><%=item.getTitle()%>
+    <h2><a href="${pageContext.request.contextPath}/news/${item.getTitle()}">${item.getTitle()}
     </a></h2>
     <div>
-        <%=item.getEntry()%>
+        ${item.getEntry()}
     </div>
 </div>
 <%}%>

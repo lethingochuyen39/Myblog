@@ -5,6 +5,7 @@
     colors.add("Default");
     colors.add("Red");
     colors.add("blue");
+    pageContext.setAttribute("colors",colors);
 %>
 
 <header>
@@ -25,9 +26,11 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Color</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <% for (String color : colors) { %>
-                        <a class="dropdown-item" href="#"><%=color%> </a>
-                        <% } %>
+
+                        <a class="dropdown-item" href="#">${colors[0]}</a>
+                        <a class="dropdown-item" href="#">${colors[1]}</a>
+                        <a class="dropdown-item" href="#">${colors[2]}</a>
+
 
                     </div>
                 </li>
