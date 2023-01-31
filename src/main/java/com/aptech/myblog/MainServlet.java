@@ -1,6 +1,7 @@
 package com.aptech.myblog;
 
 import com.aptech.models.ApplicationSettings;
+import com.aptech.models.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebInitParam;
@@ -30,15 +31,26 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setupData(req,ApplicationSettings.topic, ApplicationSettings.all);
+        if (req.getRequestURI().contains("/topic")) {
+            var topicId = req.getParameter("topic") == null || req.getParameter("topic") == "" ? 0 : Integer.valueOf(req.getParameter("topic"));
+            setupData(req, topicId);
+        } else {
+            setupData(req, 0);
+        }
+
+
+        if (req.getRequestURI().endsWith("showlogin.do")) {
+            var user = new User("Tri");
+            req.setAttribute("user", user);
+        }
         var requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
         requestDispatcher.forward(req, resp);
 
     }
 
-    private void setupData(HttpServletRequest request, String type, String detail) {
+    private void setupData(HttpServletRequest request, int type) {
         ApplicationSettings applicationSettings = (ApplicationSettings) getServletContext().getAttribute("app");
-        var data = applicationSettings.setupData(type, detail);
+        var data = applicationSettings.getNewsForTopic(type);
         request.setAttribute("items", data);
     }
 

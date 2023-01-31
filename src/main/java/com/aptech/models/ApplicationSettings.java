@@ -25,16 +25,16 @@ public class ApplicationSettings {
         return items;
     }
 
-    public List<NewsItem> setupData (String type, String detail){
-        if(type.equals(topic)){
-            var topic = getTopicList()
-                    .getTopics().stream()
-                    .filter(t-> t.getTitle().equalsIgnoreCase(detail)).findFirst().orElseGet(()-> new Topic(all,"",0));
-            return  getNewsForTopic(topic.getId());
-        }else {
-            return getNewsForTopic(0);
-        }
-    }
+//    public List<NewsItem> setupData (String type, String detail){
+//        if(type.equals(topic)){
+//            var topic = getTopicList()
+//                    .getTopics().stream()
+//                    .filter(t-> t.getTitle().equalsIgnoreCase(detail)).findFirst().orElseGet(()-> new Topic(all,"",0));
+//            return  getNewsForTopic(topic.getId());
+//        }else {
+//            return getNewsForTopic(0);
+//        }
+//    }
 
 
 }

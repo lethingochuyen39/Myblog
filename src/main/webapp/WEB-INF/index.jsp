@@ -12,20 +12,23 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<%@include file="_header.jsp" %>
+<c:import url="_header.jsp"/>
+<%--<%@include file="_header.jsp" %>--%>
 
 
 <section class="container px-4">
     <div class="row row-cols-2 gy-5">
         <div class="col-4 p-4">
             <div class="p-3 border bg-light">
-                <%@include file="_topic.jsp" %>
+                <c:import url="_topic.jsp"/>
+
+<%--                                <%@include file="_topic.jsp" %>--%>
             </div>
         </div>
         <div class="col-8 p-4">
             <div class="p-3 border bg-light">
-                <c:out value ="Hello, world"/>
-                <%@include file="_newsItems.jsp" %>
+                <c:import url="_newsItems.jsp"/>
+<%--                <%@include file="_newsItems.jsp" %>--%>
             </div>
         </div>
 

@@ -9,8 +9,8 @@ import java.util.List;
 public class TopicList {
     private final List<Topic> topics = new ArrayList();
     public TopicList(){
-        topics.add(new Topic("Servlets", "servlets", 1));
-        topics.add(new Topic("JSP", "jsp", 2));
-        topics.add(new Topic("Security", "security", 3));
+        topics.add(new Topic("Servlets", "servlets.do", 1));
+        topics.add(new Topic("JSP", "jsp.do", 2));
+        topics.add(new Topic("Security", "security.do", 3));
     }
 }

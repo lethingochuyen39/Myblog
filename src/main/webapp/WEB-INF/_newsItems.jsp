@@ -1,17 +1,9 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.aptech.models.NewsItem" %>
-<%@ page import="java.util.ArrayList" %>
-<%
-    List<NewsItem> items = (List<NewsItem>) request.getAttribute("items");
-%>
-<% for (NewsItem item : items) {
-    pageContext.setAttribute("item", item);
-%>
-<div>
-    <h2><a href="${pageContext.request.contextPath}/news/${item.getTitle()}">${item.getTitle()}
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:forEach items="${items}" var="item">
+    <h2><a href="<c:url value="/news/${item.title}.do"/>">${item.title}
     </a></h2>
     <div>
-        ${item.getEntry()}
+            ${item.entry}
     </div>
-</div>
-<%}%>
+</c:forEach>
+
