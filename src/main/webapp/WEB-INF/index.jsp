@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,6 +24,7 @@
         </div>
         <div class="col-8 p-4">
             <div class="p-3 border bg-light">
+                <c:out value ="Hello, world"/>
                 <%@include file="_newsItems.jsp" %>
             </div>
         </div>
